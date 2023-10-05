@@ -2,6 +2,7 @@
 import { ref, computed, Ref } from 'vue';
 import userData from '../data'
 import { User, PageAction } from '../types';
+import moment from 'moment';
 
 
 const users: User[] = userData;
@@ -55,6 +56,10 @@ const sortByAge = () => {
     sortAscending.value = !sortAscending.value;
 }
 
+const formatDate = (date: string) => {
+    return moment(date).format('MMMM Do YYYY, h:mm:ss a');
+}
+
 </script>
 
 <template>
@@ -82,7 +87,7 @@ const sortByAge = () => {
                     <td>{{ user.id }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.age }}</td>
-                    <td>{{ user.last_login }}</td>
+                    <td>{{ formatDate(user.last_login) }}</td>
                     <td>
                         <button>Edit</button>
                         <button>Delete</button>
@@ -141,16 +146,16 @@ const sortByAge = () => {
 }
 
 .table {
-    width: 1000px;
+    width: 1250px;
 }
 
 .table td {
-    width: 200px;
+    width: 250px;
 }
 .content {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 1000px;
+    width: 1250px;
 }
 </style>
